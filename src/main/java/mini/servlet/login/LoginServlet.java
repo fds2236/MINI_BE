@@ -29,13 +29,12 @@ public class LoginServlet extends HttpServlet {
 		String getPwd = (String)jsonObj.get("pwd");
 		
 		MemberDAO dao = new MemberDAO();
-		boolean isRegister = dao.loginCheck(getId, getPwd);
+		int resState = dao.loginCheck(getId, getPwd);
 		
 		PrintWriter out = response.getWriter();
 		JSONObject resJson = new JSONObject();
 		
-		if(isRegister) resJson.put("result", "OK"); 
-		else resJson.put("result", "NOPPP!!");
+		resJson.put("result", resState); 
 		out.print(resJson);		
 	}
 }

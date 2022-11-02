@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import mini.common.Common;
-
+// 은종
 public class MemberDAO {
 	private Connection conn = null;
 	private Statement stmt = null;
@@ -13,22 +13,26 @@ public class MemberDAO {
 	private PreparedStatement pstmt = null;
 	
 	// 로그인 체크 기능
-	public boolean loginCheck(String id, String pwd) {
-		boolean isSuccess = false;
+	public int loginCheck(String id, String pwd) {
+		int resState = 300; // 200은 로그인, 300은 Id없음, 400은 pwd 오류 => 이걸 정리한게 API문서
 		try {
 			conn = Common.getConnection();
 			stmt = conn.createStatement(); // Statement 객체 얻기
 			String sql = "SELECT * FROM MEM_TB WHERE ID = " + "'" + id + "'";
-			rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql); // select문이니까 executeQuery
 			
+			// id없으면 진입불가
 			while(rs.next()) { // 읽은 데이터가 있으면 true
 				String sqlId = rs.getString("ID"); // 쿼리문 수행 결과에서 ID값을 가져 옴
 				String sqlPwd = rs.getString("PASSWORD");
+				
 				System.out.println("ID : " + sqlId);
 				System.out.println("PASSWORD : " + sqlPwd);
 				
 				if(id.equals(sqlId) && pwd.equals(sqlPwd)) {
-					isSuccess = true;
+					resState = 200; // 정상적으로 로그인
+				} else {
+					resState = 400; // pwd 틀림
 				}
 			}
 			Common.close(rs);
@@ -38,7 +42,7 @@ public class MemberDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return isSuccess;
+		return resState;
 	}
 	
 	// ID 찾기 기능
@@ -89,12 +93,6 @@ public class MemberDAO {
 		Common.close(conn); 
 		return pwd; // 비밀번호 반환
 	}
-	
-	
-	
-
-	
-	
 	
 	
 	
