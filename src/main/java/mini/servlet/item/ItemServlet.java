@@ -73,9 +73,7 @@ public class ItemServlet extends HttpServlet {
 			itemInfo.put("LAUN_DATE", dateToStr);
 			itemArray.add(itemInfo);
 		}
-		System.out.println(itemArray);
 		out.print(itemArray);
-		
 	}
 
 }
