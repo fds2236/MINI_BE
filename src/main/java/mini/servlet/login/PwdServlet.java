@@ -28,19 +28,18 @@ public class PwdServlet extends HttpServlet {
 		JSONObject jsonObj = Common.getJsonObj(sb); // 요청 받은 메시지 JSON 파싱
 		
 		String getId = (String)jsonObj.get("id");
+		String getEmail = (String)jsonObj.get("email");
 		
 		MemberDAO dao = new MemberDAO();
-		String resPwd = dao.findPWD(getId);
-		System.out.println("resPwd : " + resPwd); // 비밀번호 출력
+		Boolean resState = dao.findPWD(getId, getEmail);
 		
 		// 이제 뭐해줘야 해? => 서블릿 응답!
 		PrintWriter out = response.getWriter();
-		JSONObject resJson = new JSONObject(); // json객체에 담아
+		JSONObject resJson = new JSONObject(); // json 객체
 		
-		if(resPwd.equals("NONE")) resJson.put("result", "NOK");
-		else {
-			resJson.put("result", "OK");
-			resJson.put("pwd", resPwd);
+		if(resState) resJson.put("result", "OK"); 
+		else{
+			resJson.put("result", "NO");
 		}
 		out.print(resJson);
 	}
