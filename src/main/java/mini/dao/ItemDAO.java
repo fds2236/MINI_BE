@@ -1,0 +1,59 @@
+package mini.dao;
+//윤정 수정 중
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import mini.common.Common;
+import mini.vo.ItemVO;
+import mini.vo.MemberVO;
+
+public class ItemDAO {
+	private Connection conn = null;
+	private Statement stmt = null;
+	private ResultSet rs = null;
+	private PreparedStatement pstmt = null;
+
+	// 전체브랜드 or 선택브랜드 
+	public List<ItemVO> itemSelect(String reqBrand) {
+		List<ItemVO> list = new ArrayList<>();
+		try {
+			conn = Common.getConnection();
+			stmt = conn.createStatement();
+			String sql = null;
+			if(reqBrand.equals("ALL")) sql = "SELECT * FROM PRO_TB";
+			else sql = "SELECT * FROM PRO_TB WHERE BRAND = " + "'" + reqBrand + "'";
+			
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				String proCode = rs.getString("PRO_CODE");
+				String brand = rs.getString("BRAND");
+				String proName = rs.getString("PRO_NAME");
+				Integer price = rs.getInt("PRICE");
+				Date launDate = rs.getDate("LAUN_DATE");
+				
+				ItemVO vo = new ItemVO();
+				vo.setProCode(proCode);
+				vo.setBrand(brand);
+				vo.setProName(proName);
+				vo.setPrice(price);
+				vo.setLaunDate(launDate);
+				list.add(vo);
+			}
+			Common.close(rs);
+			Common.close(stmt);
+			Common.close(conn);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+}
+
