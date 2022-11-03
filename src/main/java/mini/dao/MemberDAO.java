@@ -126,12 +126,19 @@ public class MemberDAO {
 	
 	// 비밀번호 재설정 기능
 	// 입력된 id의 password값을 update해주고픔
-//	public String rePWD(String pwd) {
-//		String pwd = "NONE";
+//	public String rePwd(String pwd) {
 //		try {
-//			
+//			conn = Common.getConnection();
+//			stmt = conn.createStatement(); // Statement 객체 얻기
+//			String sql = "UPDATE MEM_TB SET PASSWORD = ?" + "WEHRE ID = ?";
+//			// sql쿼리문을 어떻게 날리지 고민....!
+////			rs = stmt.executeUpdate(sql);
+//
+//		} catch(Exception e) {
+//			e.printStackTrace();
 //		}
+//		Common.close(rs);
+//		Common.close(stmt);
+//		Common.close(conn);
 //	}
-	
-	
 }

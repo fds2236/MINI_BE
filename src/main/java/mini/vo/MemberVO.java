@@ -61,54 +61,54 @@ public class MemberVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getEmailName() {
-		return emailName;
-	}
-	public void setEmailName(String emailName) {
-		this.emailName = emailName;
-	}
-	public String getPhone1() {
-		return phone1;
-	}
-	public void setPhone1(String phone1) {
-		this.phone1 = phone1;
-	}
-	public String getPhone2() {
-		return phone2;
-	}
-	public void setPhone2(String phone2) {
-		this.phone2 = phone2;
-	}
-	public String getPhone3() {
-		return phone3;
-	}
-	public void setPhone3(String phone3) {
-		this.phone3 = phone3;
-	}
-	public String getPhoneNum() {
-		return phoneNum;
-	}
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
-	}
-	public String getAddrNum() {
-		return addrNum;
-	}
-	public void setAddrNum(String addrNum) {
-		this.addrNum = addrNum;
-	}
-	public String getAddr1() {
-		return addr1;
-	}
-	public void setAddr1(String addr1) {
-		this.addr1 = addr1;
-	}
-	public String getAddr2() {
-		return addr2;
-	}
-	public void setAddr2(String addr2) {
-		this.addr2 = addr2;
-	}
+//	public String getEmailName() {
+//		return emailName;
+//	}
+//	public void setEmailName(String emailName) {
+//		this.emailName = emailName;
+//	}
+//	public String getPhone1() {
+//		return phone1;
+//	}
+//	public void setPhone1(String phone1) {
+//		this.phone1 = phone1;
+//	}
+//	public String getPhone2() {
+//		return phone2;
+//	}
+//	public void setPhone2(String phone2) {
+//		this.phone2 = phone2;
+//	}
+//	public String getPhone3() {
+//		return phone3;
+//	}
+//	public void setPhone3(String phone3) {
+//		this.phone3 = phone3;
+//	}
+//	public String getPhoneNum() {
+//		return phoneNum;
+//	}
+//	public void setPhoneNum(String phoneNum) {
+//		this.phoneNum = phoneNum;
+//	}
+//	public String getAddrNum() {
+//		return addrNum;
+//	}
+//	public void setAddrNum(String addrNum) {
+//		this.addrNum = addrNum;
+//	}
+//	public String getAddr1() {
+//		return addr1;
+//	}
+//	public void setAddr1(String addr1) {
+//		this.addr1 = addr1;
+//	}
+//	public String getAddr2() {
+//		return addr2;
+//	}
+//	public void setAddr2(String addr2) {
+//		this.addr2 = addr2;
+//	}
 	public Date getRegDate() {
 		return regDate;
 	}
