@@ -10,7 +10,7 @@ public class MemberDAO {
 	private Connection conn = null;
 	private Statement stmt = null;
 	private ResultSet rs = null;
-	private PreparedStatement pstmt = null; // sql문을 미리 컴파일해서 재사용 => Statement 인터페이스보다 훨씬 빠름
+	private PreparedStatement pstmt = null;  // sql문을 미리 컴파일해서 재사용 => Statement 인터페이스보다 훨씬 빠름
 	
 	// 로그인 체크 기능
 	public int loginCheck(String id, String pwd) {
@@ -124,21 +124,33 @@ public class MemberDAO {
 		return false;
 	}
 	
-	// 비밀번호 재설정 기능
+	// 비밀번호 재설정 결과
 	// 입력된 id의 password값을 update해주고픔
-//	public String rePwd(String pwd) {
-//		try {
-//			conn = Common.getConnection();
-//			stmt = conn.createStatement(); // Statement 객체 얻기
-//			String sql = "UPDATE MEM_TB SET PASSWORD = ?" + "WEHRE ID = ?";
-//			// sql쿼리문을 어떻게 날리지 고민....!
-////			rs = stmt.executeUpdate(sql);
-//
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		Common.close(rs);
-//		Common.close(stmt);
-//		Common.close(conn);
-//	}
+	// 변경되면 true, 변경 안되면 false
+	public boolean rePwd(String id, String pwd) {
+		int result = 0;
+		String sql = "UPDATE MEM_TB SET PASSWORD = ? WHERE ID = " + "'" + id + "'";
+		try {
+			conn = Common.getConnection();
+			pstmt = conn.prepareStatement(sql); 
+			pstmt.setString(1, pwd);
+			result = pstmt.executeUpdate();
+			
+			System.out.println("패스워드 재설정 결과" + result);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		Common.close(rs);
+		Common.close(pstmt);
+		Common.close(conn);
+		if(result == 1) return true;
+		else return false;
+	}
+	
+	// 하...임시 비밀번호 생성해서 모달창에 띄워주고 임시 비밀번호로 업데이트 하고싶다^0^...
+	
+	
+	
+	
+	
 }
