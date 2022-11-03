@@ -20,14 +20,24 @@ public class ItemDAO {
 	private PreparedStatement pstmt = null;
 
 	// 전체브랜드 or 선택브랜드 
-	public List<ItemVO> itemSelect(String reqBrand) {
+	public List<ItemVO> itemSelect(String reqBrand, String reqSort) {
 		List<ItemVO> list = new ArrayList<>();
 		try {
 			conn = Common.getConnection();
 			stmt = conn.createStatement();
 			String sql = null;
+			
+			// 브랜드 선택 쿼리
 			if(reqBrand.equals("ALL")) sql = "SELECT * FROM PRO_TB";
 			else sql = "SELECT * FROM PRO_TB WHERE BRAND = " + "'" + reqBrand + "'";
+			
+			// 최신 발매순, 높은 가격순, 낮은 가격순 쿼리
+			if(reqSort.equals("NEW_DATE")) sql = 
+					"SELECT * FROM PRO_TB ORDER BY LAUN_DATE DESC";
+			else if(reqSort.equals("HIGH_PRICE")) sql = 
+					"SELECT * FROM PRO_TB ORDER BY PRICE DESC";
+			else sql = 
+					"SELECT * FROM PRO_TB ORDER BY PRICE ASC";
 			
 			rs = stmt.executeQuery(sql);
 			

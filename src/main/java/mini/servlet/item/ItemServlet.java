@@ -45,6 +45,12 @@ public class ItemServlet extends HttpServlet {
 
 		String reqCmd = (String)jsonObj.get("cmd");
 		String reqBrand = (String)jsonObj.get("brand");
+		String reqSort = (String)jsonObj.get("sort");
+		
+		System.out.println("검색 조건 : " + reqSort);
+		System.out.println("명령어 : " + reqCmd);
+		System.out.println("브랜드 : " + reqBrand);
+		
 		PrintWriter out = response.getWriter();
 		if(!reqCmd.equals("ItemInfo")) { // ItemInfo와 값이 다르면 NOT OK
 			JSONObject resJson = new JSONObject();
@@ -54,7 +60,7 @@ public class ItemServlet extends HttpServlet {
 		}
 		
 		ItemDAO dao = new ItemDAO();
-		List<ItemVO> list = dao.itemSelect(reqBrand);
+		List<ItemVO> list = dao.itemSelect(reqBrand, reqSort);
 		// 브랜드만 받아오기
 		
 		JSONArray itemArray = new JSONArray();
