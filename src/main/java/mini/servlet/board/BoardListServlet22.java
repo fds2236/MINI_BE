@@ -25,8 +25,8 @@ import mini.vo.*;
 /**
  * Servlet implementation class boardListServlet
  */
-@WebServlet("/boardListServlet")
-public class boardListServlet extends HttpServlet {
+@WebServlet("/BoardListServlet")
+public class BoardListServlet22 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
